@@ -11,7 +11,7 @@ export class MenuItem {
   @Column()
   description: string;
 
-  @Column('decimal')
+  @Column('decimal', { precision: 10, scale: 2 })
   price: number;
 
   @Column()

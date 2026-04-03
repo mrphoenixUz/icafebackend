@@ -1,9 +1,25 @@
+import { IsString, IsNumber, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateMenuItemDto {
-  @ApiProperty() name: string;
-  @ApiProperty() description: string;
-  @ApiProperty() price: number;
-  @ApiProperty() category: string;
-  @ApiProperty() imageUrl?: string;
+  @ApiProperty()
+  @IsString()
+  name: string;
+
+  @IsString()
+  @ApiProperty() 
+  description: string;
+
+  @IsNumber()
+  @ApiProperty() 
+  price: number;
+
+  @IsString()
+  @ApiProperty() 
+  category: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty() 
+  imageUrl?: string;
 }

@@ -6,6 +6,8 @@ import { MenuModule } from './modules/menu/menu.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { TablesModule } from './modules/tables/tables.module';
 import { RealtimeModule } from './modules/realtime/realtime.module';
+import { TelegramService } from './telegram/telegram.service';
+import { TelegramModule } from './telegram/telegram.module';
 
 @Module({
   imports: [
@@ -29,8 +31,9 @@ import { RealtimeModule } from './modules/realtime/realtime.module';
     OrdersModule,
     TablesModule,
     RealtimeModule,
+    TelegramModule
   ],
   controllers: [],
-  providers: [],
+  providers: [TelegramService],
 })
 export class AppModule {}
