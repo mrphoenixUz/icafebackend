@@ -1,7 +1,9 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export class CreateMenuItemDto {
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  imageUrl?: string;
+  @ApiProperty() name: string;
+  @ApiProperty() description: string;
+  @ApiProperty() price: number;
+  @ApiProperty() category: string;
+  @ApiProperty() imageUrl?: string;
 }
