@@ -1,7 +1,10 @@
-export class CreateOrderDto {
-  tableId: number;
+import { ApiProperty } from '@nestjs/swagger';
 
-  items: {
+
+export class CreateOrderDto {
+  @ApiProperty() tableId: number;
+
+  @ApiProperty() items: {
     menuItemId: number;
     quantity: number;
     price: number;
