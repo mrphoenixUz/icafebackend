@@ -6,8 +6,13 @@ import axios from 'axios';
 export class TelegramService implements OnModuleInit {
   private bot: TelegramBot;
   private API = 'https://restaurant-api-i90i.onrender.com/menu'; // CHANGE THIS
+  private static botStarted = false;
 
   onModuleInit() {
+    if (TelegramService.botStarted) return;
+
+    TelegramService.botStarted = true;
+
     this.bot = new TelegramBot(process.env.BOT_TOKEN!, {
       polling: true,
     });
@@ -39,7 +44,7 @@ export class TelegramService implements OnModuleInit {
     });
   }
 
-  // ➕ ADD
+  // ADD
   async addMenu(chatId: number, text: string) {
     try {
       const [name, price, category, description, imageUrl] = text
@@ -61,7 +66,7 @@ export class TelegramService implements OnModuleInit {
     }
   }
 
-  // 📋 LIST
+  // LIST
   async listMenu(chatId: number) {
     try {
       const res = await axios.get(this.API);
@@ -73,7 +78,7 @@ export class TelegramService implements OnModuleInit {
       const text = res.data
         .map(
           (item) =>
-            `🍽 ${item.id}. ${item.name}\n💰 ${item.price}$\n📂 ${item.category}`,
+            `${item.id}. ${item.name}\n"narx:" ${item.price}$\n"kategoriya:" ${item.category}\n"ta'rif:" ${item.description}\n"rasm:" ${item.imageUrl}`,
         )
         .join('\n\n');
 
@@ -83,7 +88,7 @@ export class TelegramService implements OnModuleInit {
     }
   }
 
-  // ✏️ UPDATE
+  // UPDATE
   async updateMenu(chatId: number, text: string) {
     try {
       const [id, name, price, category, description, imageUrl] = text
@@ -105,7 +110,7 @@ export class TelegramService implements OnModuleInit {
     }
   }
 
-  // ❌ DELETE
+  // DELETE
   async deleteMenu(chatId: number, text: string) {
     try {
       const id = text.replace('/delete ', '').trim();
