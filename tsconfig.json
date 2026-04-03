@@ -12,6 +12,7 @@
     // "rootDir": "./src",
     // "strict": false,
     // "esModuleInterop": true,
+    "exclude": ["node_modules", "dist", "test", "**/*spec.ts"],
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
